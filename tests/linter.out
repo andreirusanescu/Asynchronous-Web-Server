@@ -1,0 +1,2167 @@
+cd .. && checkpatch.pl -f src/*.c src/*.h src/samples/*.c src/utils/*.c src/utils/*.h tests/_test/*.c
+/bin/sh: 1: checkpatch.pl: not found
+make: [Makefile:20: lint] Error 127 (ignored)
+cd .. && checkpatch.pl -f checker/*.sh tests/*.sh tests/_test/*.sh
+/bin/sh: 1: checkpatch.pl: not found
+make: [Makefile:21: lint] Error 127 (ignored)
+cd .. && cpplint --recursive src/ tests/ checker/
+Done processing src/aws.c
+Done processing src/aws.h
+Ignoring "src/http-parser/http_parser.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/http-parser/CPPLINT.cfg". File path component "http_parser.c" matches pattern "http_parser\.(c|h)"
+Ignoring "src/http-parser/http_parser.h": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/http-parser/CPPLINT.cfg". File path component "http_parser.h" matches pattern "http_parser\.(c|h)"
+Ignoring "src/http-parser/samples/test_get_request_path.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/http-parser/samples/CPPLINT.cfg". File path component "test_get_request_path.c" matches pattern "test_get_request_path\.c"
+Ignoring "src/http-parser/test.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/http-parser/CPPLINT.cfg". File path component "test.c" matches pattern "test\.c"
+Ignoring "src/samples/epoll_echo_server.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/samples/CPPLINT.cfg". File path component "epoll_echo_server.c" matches pattern "epoll_echo_server\.c"
+Ignoring "src/samples/http_reply_once.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/src/samples/CPPLINT.cfg". File path component "http_reply_once.c" matches pattern "http_reply_once\.c"
+Done processing src/utils/debug.h
+Done processing src/utils/sock_util.c
+Done processing src/utils/sock_util.h
+Done processing src/utils/util.h
+Done processing src/utils/w_epoll.h
+Ignoring "tests/_test/sockop_preload.c": file excluded by "/home/kali/Desktop/SO/assignment-async-web-server/tests/_test/CPPLINT.cfg". File path component "sockop_preload.c" matches pattern "sockop_preload\.c"
+cd .. && shellcheck checker/*.sh tests/*.sh tests/_test/*.sh
+
+In tests/_test/run_test.sh line 26:
+    if test "$DEBUG_" = "1"; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 27:
+        "$@" 1>&2
+        ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 42:
+    DEBUG echo "MEM TEST"
+    ^-------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 44:
+    if [ -z "$mem_points" ] || [ "$mem_points" = "0" ]; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^-------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                               ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 45:
+        return
+        ^----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 48:
+    res=$1
+    ^----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 49:
+    memcheck_description="$description - memcheck"
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 50:
+    printf "%02d) %s" "$test_index" "$memcheck_description"
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 52:
+    for ((i = 0; i < 67 - ${#memcheck_description}; i++)); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 53:
+        printf "."
+        ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 56:
+    if test "$res" -ne "$MEMCHECK_ERR_CODE"; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 57:
+        test_do_pass "$mem_points"
+        ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 59:
+        test_do_fail "$mem_points"
+        ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 81:
+    points=$1
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 82:
+    printf "failed  [ 0/%02d]\n" $max_points
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                 ^---------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    printf "failed  [ 0/%02d]\n" "$max_points"
+
+
+In tests/_test/run_test.sh line 83:
+    if test "$EXIT_IF_FAIL" = "1"; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 84:
+        exit 1
+        ^----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 90:
+    points=$1
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 91:
+    printf "passed  [%02d/%02d]\n" "$points" "$max_points"
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 96:
+    printf "%02d) %s" "$test_index" "$description"
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 98:
+    for ((i = 0; i < 67 - ${#description}; ++i)); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 99:
+        printf "."
+        ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 102:
+    "$@" > /dev/null 2>&1
+    ^-------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 103:
+    if test $? -eq 0; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^-----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 104:
+        test_do_pass "$points"
+        ^--------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 106:
+        test_do_fail "$points"
+        ^--------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 117:
+    libpath="$(readlink -f _test/sockop_preload.so)"
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 119:
+    if test ! -f "$libpath"; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 120:
+        echo "Cannot find $libpath"
+        ^-------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 121:
+        exit 1
+        ^----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 124:
+    if [ "$mem_points" != 0 ]; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^--------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 125:
+        MEMCHECK_TEST=$MEMCHECK
+        ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 127:
+        MEMCHECK_TEST=
+        ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 130:
+    LD_PRELOAD="$libpath" $MEMCHECK_TEST $exec_name &>> "$LOG_FILE" &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                         ^--------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    LD_PRELOAD="$libpath" $MEMCHECK_TEST "$exec_name" &>> "$LOG_FILE" &
+
+
+In tests/_test/run_test.sh line 131:
+    if test $? -eq 0; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^-----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 132:
+        exec_pid=$!
+        ^---------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 135:
+    sleep 2
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 141:
+    kill -9 "$exec_pid" &>> $LOG_FILE
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                            ^-------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    kill -9 "$exec_pid" &>> "$LOG_FILE"
+
+
+In tests/_test/run_test.sh line 143:
+    if [ "$DO_CLEANUP" = "yes" ]; then
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+       ^-----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 144:
+        rm -rf "$WGET_LOG" &>> $LOG_FILE
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                               ^-------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        rm -rf "$WGET_LOG" &>> "$LOG_FILE"
+
+
+In tests/_test/run_test.sh line 147:
+    wait "$exec_pid" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 148:
+    memory_test $?
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 189:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 191:
+    basic_test test -e "$exec_name"
+    ^-----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 193:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 198:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 200:
+    basic_test ps -C aws
+    ^------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 202:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 208:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 210:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 212:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 214:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 219:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 221:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $9;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 223:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 225:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 231:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 233:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 234:
+    nc_pid=$!
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 235:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 237:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 239:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 241:
+    kill -9 "$nc_pid" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 242:
+    wait "$nc_pid" > /dev/null 2>&1
+    ^-----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 244:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 249:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 251:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 252:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 253:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 254:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 255:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 257:
+    n_conns=$(lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+              ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 259:
+    DEBUG echo "n_conns: $n_conns"
+    ^----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 260:
+    basic_test test "$n_conns" -eq 2
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 262:
+    kill -9 "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 263:
+    wait "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 265:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 271:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 273:
+    nm -u "$exec_name" | grep epoll > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 274:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 276:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 281:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 283:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 284:
+    nc_pid=$!
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 285:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 287:
+    n_conns=$(lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+              ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 290:
+    kill -9 "$nc_pid" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 291:
+    wait "$nc_pid" > /dev/null 2>&1
+    ^-----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 293:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 295:
+    basic_test test "$n_conns" -eq 1 -a $? -ne 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 297:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 302:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 304:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 305:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 306:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 307:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 308:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 310:
+    n_conns=$(lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+              ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 313:
+    kill -9 "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 314:
+    wait "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 316:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 318:
+    basic_test test "$n_conns" -eq 2 -a $? -ne 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 320:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 325:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 327:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 328:
+    nc_pid=$!
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 329:
+    kill -9 "$nc_pid" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 330:
+    wait "$nc_pid" > /dev/null 2>&1
+    ^-----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 331:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 332:
+    nc_pid=$!
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 333:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 335:
+    lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | grep TCP | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 337:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 339:
+    kill -9 "$nc_pid" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 340:
+    wait "$nc_pid" > /dev/null 2>&1
+    ^-----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 342:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 347:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 349:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 350:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 351:
+    kill -9 "$nc_pid1" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 352:
+    wait "$nc_pid1" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 353:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 354:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 355:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 356:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 357:
+    kill -9 "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 358:
+    wait "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 359:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 360:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 361:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 363:
+    n_conns=$(lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+              ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 365:
+    DEBUG echo "n_conns: $n_conns"
+    ^----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 366:
+    basic_test test "$n_conns" -eq 2
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 368:
+    kill -9 "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 369:
+    wait "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 371:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 376:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 378:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 379:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 380:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 381:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 382:
+    kill -9 "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 383:
+    wait "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 384:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 385:
+    nc_pid1=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 386:
+    nc localhost "$aws_listen_port" 0<&- &
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 387:
+    nc_pid2=$!
+    ^--------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 388:
+    sleep 1
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 390:
+    n_conns=$(lsof -p "$exec_pid" | awk -F '[ \t]+' '{print $8, $10;}' | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+              ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 392:
+    DEBUG echo "n_conns: $n_conns"
+    ^----------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 393:
+    basic_test test "$n_conns" -eq 2
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 395:
+    kill -9 "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 396:
+    wait "$nc_pid1" "$nc_pid2" > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 398:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 403:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 405:
+    echo -ne "GET /$(basename $static_folder)/small00.dat HTTP/1.0\r\n\r\n" | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                     ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                              ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    echo -ne "GET /$(basename "$static_folder")/small00.dat HTTP/1.0\r\n\r\n" | \
+
+
+In tests/_test/run_test.sh line 408:
+    head -1 small00.dat | grep '^HTTP/' > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 409:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 411:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 412:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 417:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 419:
+    echo -ne "GET /$(basename $static_folder)/small00.dat HTTP/1.1\r\n\r\n" | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                     ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                              ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    echo -ne "GET /$(basename "$static_folder")/small00.dat HTTP/1.1\r\n\r\n" | \
+
+
+In tests/_test/run_test.sh line 422:
+    head -1 small00.dat | grep '^HTTP/' > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 423:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 425:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 426:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 431:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 433:
+    nm -u "$exec_name" | grep sendfile > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 434:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 436:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 441:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 443:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/small00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/small00.dat" \
+
+
+In tests/_test/run_test.sh line 445:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 447:
+    [ -s small00.dat ]
+    ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 448:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 449:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 451:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 452:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 457:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 459:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/small00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/small00.dat" \
+
+
+In tests/_test/run_test.sh line 462:
+    cmp small00.dat $static_folder/small00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp small00.dat "$static_folder"/small00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 463:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 465:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 466:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 471:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 473:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 475:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 477:
+    [ -s large00.dat ]
+    ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 478:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 479:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 481:
+    rm large00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 482:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 487:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 489:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 492:
+    cmp large00.dat $static_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$static_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 493:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 495:
+    rm large00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 496:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 501:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 503:
+    echo -ne "GET /$(basename $static_folder)/abcdef.dat HTTP/1.0\r\n\r\n" | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                     ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                              ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    echo -ne "GET /$(basename "$static_folder")/abcdef.dat HTTP/1.0\r\n\r\n" | \
+
+
+In tests/_test/run_test.sh line 506:
+    head -1 abcdef.dat | grep '^HTTP/' | grep '404' > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 507:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 509:
+    rm abcdef.dat
+    ^-----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 510:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 516:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 518:
+    echo -ne "GET /xyzt/abcdef.dat HTTP/1.0\r\n\r\n" | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 521:
+    head -1 abcdef.dat | grep '^HTTP/' | grep '404' > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 522:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 524:
+    rm abcdef.dat
+    ^-----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 525:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 530:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 532:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 534:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large01.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large01.dat" \
+
+
+In tests/_test/run_test.sh line 537:
+    cmp large00.dat $static_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$static_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 538:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 539:
+    cmp large01.dat $static_folder/large01.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large01.dat "$static_folder"/large01.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 540:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 541:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 543:
+    rm large00.dat large01.dat
+    ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 544:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 549:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 551:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 553:
+    pid1=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 554:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large01.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large01.dat" \
+
+
+In tests/_test/run_test.sh line 556:
+    pid2=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 557:
+    wait "$pid1" $pid2 > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                 ^---^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wait "$pid1" "$pid2" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 559:
+    cmp large00.dat $static_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$static_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 560:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 561:
+    cmp large01.dat $static_folder/large01.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large01.dat "$static_folder"/large01.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 562:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 563:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 565:
+    rm large00.dat large01.dat
+    ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 566:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 571:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 573:
+    ret_val=0
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 574:
+    declare -a pids
+    ^-------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 576:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 577:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 578:
+        wget -t 1 "http://localhost:8888/$(basename $static_folder)/$filename" \
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                           ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wget -t 1 "http://localhost:8888/$(basename "$static_folder")/$filename" \
+
+
+In tests/_test/run_test.sh line 580:
+        pids[$i]=$!
+        ^---------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In tests/_test/run_test.sh line 582:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 583:
+        wait ${pids[$i]} > /dev/null 2>&1
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^---------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wait "${pids[$i]}" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 586:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 587:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 588:
+        if ! cmp "$static_folder/$filename" "$filename" > /dev/null 2>&1; then
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 589:
+            ret_val=1
+            ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 590:
+            break
+            ^---^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 593:
+    basic_test test "$ret_val" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 595:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 596:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 597:
+        rm "$filename"
+        ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 599:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 604:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 606:
+    nm -u "$exec_name" | grep io_submit > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 607:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 609:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 614:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 616:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/small00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/small00.dat" \
+
+
+In tests/_test/run_test.sh line 618:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 620:
+    [ -s small00.dat ]
+    ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 621:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 622:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 624:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 625:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 630:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 632:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/small00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/small00.dat" \
+
+
+In tests/_test/run_test.sh line 635:
+    cmp small00.dat $dynamic_folder/small00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp small00.dat "$dynamic_folder"/small00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 636:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 638:
+    rm small00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 639:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 644:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 646:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 648:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 650:
+    [ -s large00.dat ]
+    ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 651:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 652:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 654:
+    rm large00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 655:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 660:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 662:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 665:
+    cmp large00.dat $dynamic_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$dynamic_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 666:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 668:
+    rm large00.dat
+    ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 669:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 674:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 676:
+    echo -ne "GET /$(basename $dynamic_folder)/abcdef.dat HTTP/1.0\r\n\r\n" | \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                     ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                              ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    echo -ne "GET /$(basename "$dynamic_folder")/abcdef.dat HTTP/1.0\r\n\r\n" | \
+
+
+In tests/_test/run_test.sh line 679:
+    head -1 abcdef.dat | grep '^HTTP/' | grep '404' > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 680:
+    basic_test test $? -eq 0
+    ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 682:
+    rm abcdef.dat
+    ^-----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 683:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 688:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 690:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 692:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large01.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large01.dat" \
+
+
+In tests/_test/run_test.sh line 695:
+    cmp large00.dat $dynamic_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$dynamic_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 696:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 697:
+    cmp large01.dat $dynamic_folder/large01.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large01.dat "$dynamic_folder"/large01.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 698:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 699:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 701:
+    rm large00.dat large01.dat
+    ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 702:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 707:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 709:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 711:
+    pid1=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 712:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large01.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large01.dat" \
+
+
+In tests/_test/run_test.sh line 714:
+    pid2=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 715:
+    wait "$pid1" $pid2 > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                 ^---^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wait "$pid1" "$pid2" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 717:
+    cmp large00.dat $dynamic_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$dynamic_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 718:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 719:
+    cmp large01.dat $dynamic_folder/large01.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large01.dat "$dynamic_folder"/large01.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 720:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 721:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 723:
+    rm large00.dat large01.dat
+    ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 724:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 729:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 731:
+    ret_val=0
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 732:
+    declare -a pids
+    ^-------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 734:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 735:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 736:
+        wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/$filename" \
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                           ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/$filename" \
+
+
+In tests/_test/run_test.sh line 738:
+        pids[$i]=$!
+        ^---------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In tests/_test/run_test.sh line 740:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 741:
+        wait ${pids[$i]} > /dev/null 2>&1
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^---------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wait "${pids[$i]}" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 744:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 745:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 746:
+        if ! cmp "$dynamic_folder/$filename" "$filename" > /dev/null 2>&1; then
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 747:
+            ret_val=1
+            ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 748:
+            break
+            ^---^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 751:
+    basic_test test "$ret_val" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 753:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 754:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 755:
+        rm "$filename"
+        ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 757:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 762:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 764:
+    wget -t 1 "http://localhost:8888/$(basename $static_folder)/large00.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$static_folder")/large00.dat" \
+
+
+In tests/_test/run_test.sh line 766:
+    pid1=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 767:
+    wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/large01.dat" \
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                       ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/large01.dat" \
+
+
+In tests/_test/run_test.sh line 769:
+    pid2=$!
+    ^-----^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 770:
+    wait "$pid1" $pid2 > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                 ^---^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    wait "$pid1" "$pid2" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 772:
+    cmp large00.dat $static_folder/large00.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large00.dat "$static_folder"/large00.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 773:
+    code1=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 774:
+    cmp large01.dat $dynamic_folder/large01.dat > /dev/null 2>&1
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+    cmp large01.dat "$dynamic_folder"/large01.dat > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 775:
+    code2=$?
+    ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 776:
+    basic_test test "$code1" -eq 0 -a "$code2" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 778:
+    rm large00.dat large01.dat
+    ^------------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 779:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 784:
+    init_test
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 786:
+    ret_val=0
+    ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 787:
+    declare -a pids
+    ^-------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 789:
+    for i in $(seq 0 24); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 790:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 791:
+        wget -t 1 "http://localhost:8888/$(basename $static_folder)/$filename" \
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                           ^---------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                    ^------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wget -t 1 "http://localhost:8888/$(basename "$static_folder")/$filename" \
+
+
+In tests/_test/run_test.sh line 793:
+        pids[$i]=$!
+        ^---------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In tests/_test/run_test.sh line 795:
+    for i in $(seq 25 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 796:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 797:
+        wget -t 1 "http://localhost:8888/$(basename $dynamic_folder)/$filename" \
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                           ^----------------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                                                    ^-------------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wget -t 1 "http://localhost:8888/$(basename "$dynamic_folder")/$filename" \
+
+
+In tests/_test/run_test.sh line 799:
+        pids[$i]=$!
+        ^---------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2004 (style): $/${} is unnecessary on arithmetic variables.
+
+
+In tests/_test/run_test.sh line 801:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 802:
+        wait ${pids[$i]} > /dev/null 2>&1
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^---------^ SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean: 
+        wait "${pids[$i]}" > /dev/null 2>&1
+
+
+In tests/_test/run_test.sh line 805:
+    for i in $(seq 0 24); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 806:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 807:
+        if ! cmp "$static_folder/$filename" "$filename" > /dev/null 2>&1; then
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 808:
+            ret_val=1
+            ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 809:
+            break
+            ^---^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 812:
+    for i in $(seq 25 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 813:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 814:
+        if ! cmp "$dynamic_folder/$filename" "$filename" > /dev/null 2>&1; then
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+             ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 815:
+            ret_val=1
+            ^-------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 816:
+            break
+            ^---^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 819:
+    basic_test test "$ret_val" -eq 0
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 821:
+    for i in $(seq 0 49); do
+    ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+               ^------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 822:
+        filename=large$(printf "%02g" "$i").dat
+        ^-- SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+                        ^----------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 823:
+        rm "$filename"
+        ^------------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+
+In tests/_test/run_test.sh line 825:
+    cleanup_test
+    ^----------^ SC2317 (info): Command appears to be unreachable. Check usage (or ignore if invoked indirectly).
+
+For more information:
+  https://www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...
+  https://www.shellcheck.net/wiki/SC2317 -- Command appears to be unreachable...
+  https://www.shellcheck.net/wiki/SC2004 -- $/${} is unnecessary on arithmeti...
+make: [Makefile:23: lint] Error 1 (ignored)
