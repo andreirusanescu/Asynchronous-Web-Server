@@ -108,7 +108,53 @@ void connection_start_async_io(struct connection *conn)
 	/* TODO: Start asynchronous operation (read from file).
 	 * Use io_submit(2) & friends for reading data asynchronously.
 	 */
-	(void)conn;
+	struct io_event events;
+	ssize_t rc;
+
+	/**
+	 * Before this call, the buffer was already zeroed
+	 * and was filled when the header was sent
+	 */
+	memset(conn->send_buffer, 0, conn->send_len);
+	conn->send_len = conn->send_pos = 0;
+
+	while (conn->async_read_len < conn->file_size) {
+		/* Prepares for reading from the file */
+		io_prep_pread(&conn->iocb, conn->fd, conn->send_buffer,
+					  sizeof(conn->send_buffer), conn->async_read_len);
+
+		/**
+		 * Submits the operation of read / write to the
+		 * kernel to process it in the background
+		 */
+		rc = io_submit(conn->ctx, 1, &conn->piocb[0]);
+		DIE(rc < 0, "io_submit() failed");
+
+		/* Kernel puts how much it read in the event
+		 * structure (event.res), this call asks the kernel
+		 * if the operation is done. Timeout is set to
+		 * NULL so it will block indefinitely until
+		 * the read event has been obtained from the internal
+		 * queue
+		 */
+		rc = io_getevents(conn->ctx, 1, 1, &events, NULL);
+		DIE(rc != 1, "io_getevents() failed");
+
+		conn->async_read_len += events.res;
+
+		io_prep_pwrite(&conn->iocb, conn->sockfd, conn->send_buffer,
+					   events.res, 0);
+
+		rc = io_submit(conn->ctx, 1, &conn->piocb[0]);
+		DIE(rc < 0, "io_submit() failed");
+
+		rc = io_getevents(conn->ctx, 1, 1, &events, NULL);
+		DIE(rc != 1, "io_getevents() failed");
+
+		memset(conn->send_buffer, 0, events.res);
+	}
+
+	dlog(LOG_DEBUG, "Sent %ld bytes out of %ld\n", conn->async_read_len, conn->file_size);
 }
 
 void connection_remove(struct connection *conn)
@@ -122,6 +168,9 @@ void connection_remove(struct connection *conn)
 	rc = close(conn->sockfd);
 	DIE(rc < 0, "close() failed");
 
+	/**
+	 * Check if the fd was set
+	 */
 	if (conn->fd > 0) {
 		rc = close(conn->fd);
 		DIE(rc < 0, "close() failed");
@@ -235,53 +284,6 @@ void connection_complete_async_io(struct connection *conn)
 	/* TODO: Complete asynchronous operation; operation returns successfully.
 	 * Prepare socket for sending.
 	 */
-	struct io_event events;
-	ssize_t rc;
-
-	/**
-	 * Before this call, the buffer was already zeroed
-	 * and was filled when the header was sent
-	 */
-	memset(conn->send_buffer, 0, conn->send_len);
-	conn->send_len = conn->send_pos = 0;
-
-	while (conn->async_read_len < conn->file_size) {
-		/* Prepares for reading from the file */
-		io_prep_pread(conn->piocb[0], conn->fd, conn->send_buffer,
-					  sizeof(conn->send_buffer), conn->async_read_len);
-
-		/**
-		 * Submits the operation of read / write to the
-		 * kernel to process it in the background
-		 */
-		rc = io_submit(conn->ctx, 1, &conn->piocb[0]);
-		DIE(rc < 0, "io_submit() failed");
-
-		/* Kernel puts how much it read in the event
-		 * structure (event.res), this call asks the kernel
-		 * if the operation is done. Timeout is set to
-		 * NULL so it will block indefinitely until
-		 * the read event has been obtained from the internal
-		 * queue
-		 */
-		rc = io_getevents(conn->ctx, 1, 1, &events, NULL);
-		DIE(rc != 1, "io_getevents() failed");
-
-		conn->async_read_len += events.res;
-
-		io_prep_pwrite(&conn->iocb, conn->sockfd, conn->send_buffer,
-					   events.res, 0);
-
-		rc = io_submit(conn->ctx, 1, &conn->piocb[0]);
-		DIE(rc < 0, "io_submit() failed");
-
-		rc = io_getevents(conn->ctx, 1, 1, &events, NULL);
-		DIE(rc != 1, "io_getevents() failed");
-
-		memset(conn->send_buffer, 0, events.res);
-	}
-
-	dlog(LOG_DEBUG, "Sent %ld bytes out of %ld\n", conn->async_read_len, conn->file_size);
 }
 
 int parse_header(struct connection *conn)
@@ -360,12 +362,12 @@ int connection_send_data(struct connection *conn)
 
 	if (!conn->send_pos) {
 		connection_remove(conn);
-		return -1;
+		return 0;
 	}
 
 	dlog(LOG_DEBUG, "Sent %ld bytes out of %ld of header\n", conn->send_pos, conn->send_len);
 
-	return 0;
+	return conn->send_pos;
 }
 
 int connection_send_dynamic(struct connection *conn)
@@ -388,7 +390,7 @@ int connection_send_dynamic(struct connection *conn)
 
 	conn->piocb[0] = &conn->iocb;
 
-	connection_complete_async_io(conn);
+	connection_start_async_io(conn);
 
 	conn->state = STATE_DATA_SENT;
 
